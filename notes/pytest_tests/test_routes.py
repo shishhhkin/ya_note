@@ -40,9 +40,9 @@ def test_pages_availability_for_anonymous_user(client, name):
     ('notes:detail', 'notes:edit', 'notes:delete'),
 )
 def test_pages_availability_for_different_users(
-        parametrized_client, name, note, expected_status
+        parametrized_client, name, slug_for_args, expected_status
 ):
-    url = reverse(name, args=(note.slug,))
+    url = reverse(name, args=slug_for_args)
     response = parametrized_client.get(url)
     assert response.status_code == expected_status
 
